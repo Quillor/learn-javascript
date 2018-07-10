@@ -19,6 +19,8 @@ var price = 2.5;
 
 function priceOfCookies (a) {
   var numberOfCookies = prompt ("How how many cookies would you like?");
+  var tip = prompt ("How much would you like to tip?");
+
   return numberOfCookies * price;
 }
 
