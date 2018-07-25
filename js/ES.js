@@ -89,45 +89,82 @@
 //
 // console.log(calculator[2](1,2))
 
-var hands = [
-  "rock",
-  "paper",
-  "scissors"
-]
 
-let getHand = () => {
-  return parseInt( ( Math.random()* 10 ) % 3 )
-}
-// Define 2 objects ??
+// Define a list of options
+let hands = [ "rock", "paper", "scissors" ]
 
-var player1 = {
-  name: "Tim",
-  getHand: getHand
-}
-var player2 = {
-  name: "Timmy",
-  getHand: getHand
-}
-
-var beats = {
+// Create an object table of outcomes to define who wins
+let wins = {
   scissors: "paper",
   rock: "scissors",
   paper: "rock"
 }
 
+// Randomly pick an option
+let getHand = () => {
+  let h = parseInt(Math.random()*10)%3
+  return hands[h]
+}
 
-let playRound = (player1, player2) => {
-  var player1Hand = player1.getHand()
-  var player2Hand = player2.getHand()
+// Define your players
+let p1 = {
+  name: "Tim",
+  getHand: getHand
+}
+let p2 = {
+  name: "Kevin",
+  getHand: getHand
+}
 
-  if (player1Hand === player2Hand ) {
-    alert("It's a tie")
+//
+let playRound = (p1, p2) => {
+  let p1h = p1.getHand()
+  let p2h = p2.getHand()
+  let winsValue = wins[p1h];
+  console.log(`${p1.name} choose ${p1h} and ${p2.name} choose ${p2h} ` )
+
+  if (p1h == p2h){
+
+    return playRound(p1, p2)
+    console.log("It is a tie! Let's play again.")
   }
-  // This goes to the beats object, and looksup a matching value
-  else if(beats[player1Hand] === player2Hand ){
-    alert("Player 1 wins!")
+  else if (winsValue == p2h){
+    return p1
   }
   else {
-    alert("Player 2 wins!")
+    return p2
   }
 }
+
+let playGame = (p1 , p2, winCount ) => {
+  let p1Count = 0
+  let p2Count = 0
+  let winner = false
+  let checkEndGame = (a, winCount) => {
+    if (a == winCount){
+      winner = true
+    }
+  }
+
+  while(!winner){
+    let w = playRound(p1, p2)
+    if (w == p1 ){
+      p1Count += 1
+      checkEndGame(p1Count, winCount)
+      console.log(`${p1.name} won this round`)
+    } else {
+      p2Count += 1
+      checkEndGame(p2Count, winCount)
+      console.log(`${p2.name} won this round`)
+    }
+  }
+
+  if (p1Count > p2Count){
+    console.log(`${p1.name} wins the game!`)
+  } else {
+    console.log(`${p2.name} wins the game!`)
+  }
+
+}
+
+playGame(p1, p2, 5)
