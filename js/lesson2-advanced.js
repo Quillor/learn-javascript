@@ -93,10 +93,6 @@ let slideShow = {
   currentPhotoIndex: 0,
   // Go to the next photo in the list
 
-
-
-
-
                         // By default, the next photo will increment by 1 photo,
                         // unless specified
   nextPhoto: function ( increments = 1 ) {
