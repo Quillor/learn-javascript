@@ -114,6 +114,7 @@ let slideShow = {
     }
     this.element.setAttribute("src", this.getCurrentPhoto() )
   },
+  
   prevPhoto: function ( increments = 1 ) {
     // Loop for the number of increment
     // TODO: How can I move this:
