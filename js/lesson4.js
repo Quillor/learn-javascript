@@ -21,7 +21,7 @@ class Particle {
   }
 }
 
-extends class Particle
+extends class Particle 
 
 for (let i = 0; i < 100; i++) {
   particles.push(new Particle(i, Math.random()*500 ))
